@@ -2,11 +2,10 @@ import * as express from 'express';
 import { config } from 'dotenv';
 import { sendMessage } from './producers/sendMessage';
 import { consumeMessages } from './consumers/receiveMessage';
-import { timeStamp } from 'console';
 
 config()
 
-const app = express();
+const app = express.default();
 app.use(express.json());
 
 const QUEUE_NAME = 'rpa-tasks';
@@ -20,7 +19,8 @@ app.post('/send', async (req: any, res: any) => {
 })
 
 // Iniciar Consumer
-consumeMessages(QUEUE_NAME)
+// consumeMessages(QUEUE_NAME)
+consumeMessages()
 
 const PORT = process.env.PORT
 app.listen(PORT, () => console.log(`🚀 Servidor rodando na porta ${PORT}`));
