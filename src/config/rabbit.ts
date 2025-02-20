@@ -1,5 +1,5 @@
 // Criando a conexão com o rabbitMQ
-import amqplib from 'amqplib';
+import * as amqplib from 'amqplib';
 import { config } from 'dotenv';
 config();
 

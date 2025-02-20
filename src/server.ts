@@ -12,10 +12,10 @@ app.use(express.json());
 const QUEUE_NAME = 'rpa-tasks';
 
 app.post('/send', async (req: any, res: any) => {
-  const { task } = req.body;
+  const { query, task } = req.body;
   if (!task) return res.status(400).json({ error: 'A tarefa é obrigatória' });
 
-  await sendMessage(QUEUE_NAME, { task, timeStamp: new Date() });
+  await sendMessage(QUEUE_NAME, { task, query });
   res.json({ message: 'Mensagem enviada para o RPA', task })
 })
 
